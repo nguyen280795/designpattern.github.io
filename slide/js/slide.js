@@ -98,8 +98,8 @@ var runSlide = function () {
         $("#icon-" + option).animate({"opacity": 1});
         $("#" + option).animate({"opacity": 1});
         privateSlideContainer.css({"margin-left": -(option * privateWidth - privateWidth)});
-        privateCurrentSlide = option;
-        console.log(privateCurrentSlide);
+        // privateCurrentSlide = option;
+        // console.log(privateCurrentSlide);
     };
 
     //======================>FUNC PUBLIC<======================
