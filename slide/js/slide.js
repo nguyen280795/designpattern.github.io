@@ -98,8 +98,6 @@ var runSlide = function () {
         $("#icon-" + option).animate({"opacity": 1});
         $("#" + option).animate({"opacity": 1});
         privateSlideContainer.css({"margin-left": -(option * privateWidth - privateWidth)});
-        // privateCurrentSlide = option;
-        // console.log(privateCurrentSlide);
     };
 
     //======================>FUNC PUBLIC<======================
@@ -113,7 +111,6 @@ var runSlide = function () {
     var publicNextSlide = function () {
         privatePauseSlide();
         privateNextSlide();
-        // privateClickThumb();
         privateStartSlider();
     };
 
@@ -121,13 +118,13 @@ var runSlide = function () {
     var publicPreSlide = function () {
         privatePauseSlide();
         privatePreSlide();
-        // privateClickThumb();
         privateStartSlider();
     };
 
-    var publicClickThum = function () {
+    var publicClickThumb = function () {
         privatePauseSlide();
         privateClickThumb();
+        privateCurrentSlide = ++option;
         privateStartSlider();
     };
 
@@ -136,7 +133,7 @@ var runSlide = function () {
         run: publicStartSlide,
         next: publicNextSlide,
         pre: publicPreSlide,
-        click: publicClickThum
+        click: publicClickThumb
     }
 
 }();
