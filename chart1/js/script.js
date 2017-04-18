@@ -1,4 +1,4 @@
-var publicData = [20, 80];
+var publicData = [1,99];
 var publicColors = ["#E4322B", "#009ED5"];
 var publicName = "BIỂU ĐỒ TỔNG QUAN KHUNG NĂNG LỰC";
 
@@ -129,13 +129,14 @@ var pieChart = function () {
 
     //-------->privateReport1<--------//
     var privateReport1 = function () {
+        myCtx.scale(1,2);
         myCtx.beginPath();
-        myCtx.moveTo(x, y);
-        myCtx.lineTo(150, 90);
-        myCtx.lineTo(190, 90);
+        myCtx.moveTo(x+4, y-101);
+        myCtx.lineTo(150, 50);
+        myCtx.lineTo(190, 50);
         myCtx.fillStyle = "#807D80";
-        myCtx.font = "9px Arial";
-        myCtx.fillText((100 - (publicData[1] / privateTotal) * 100) + "% CHƯA ĐẠT", 150, 80);
+        myCtx.font = "8px Arial";
+        myCtx.fillText((100 - (publicData[1] / privateTotal) * 100) + "% CHƯA ĐẠT", 150, 45);
         myCtx.strokeStyle = "#E4322B";
         myCtx.stroke();
     };
@@ -143,12 +144,12 @@ var pieChart = function () {
     //-------->privateReport2<--------//
     var privateReport2 = function () {
         myCtx.beginPath();
-        myCtx.moveTo(x1, y1);
-        myCtx.lineTo(60, 100);
-        myCtx.lineTo(20, 100);
+        myCtx.moveTo(x1, y1-100);
+        myCtx.lineTo(60, 50);
+        myCtx.lineTo(20, 50);
         myCtx.fillStyle = "#807D80";
-        myCtx.font = "9px Arial";
-        myCtx.fillText(((publicData[1] / privateTotal) * 100) + "% ĐÃ ĐẠT", 20, 90);
+        myCtx.font = "8px Arial";
+        myCtx.fillText(((publicData[1] / privateTotal) * 100) + "% ĐÃ ĐẠT", 20, 45);
         myCtx.strokeStyle = "#456AA4";
         myCtx.stroke();
     };
@@ -157,8 +158,8 @@ var pieChart = function () {
     var privateNameChart = function () {
         myCtx.beginPath();
         myCtx.fillStyle = "#009ED5";
-        myCtx.font = "9px Arial";
-        myCtx.fillText(publicName, privateCenter[0] / 4, privateCenter[1] * 1.8);
+        myCtx.font = "20px Arial";
+        myCtx.fillText(publicName, privateCenter[0] *1.4, privateCenter[1] * 1.8);
         myCtx.stroke();
     };
 
@@ -166,6 +167,7 @@ var pieChart = function () {
     //-------->publicPieChart<--------//
     var publicPieChart = function () {
 
+        privateNameChart();
         if (publicData[1] / privateTotal === 0) {
             privateArr3DNotReached();
         } else {
@@ -198,7 +200,7 @@ var pieChart = function () {
         if (publicData[1] / privateTotal !== 0) {
             privateReport2();
         }
-        privateNameChart();
+
     };
 
     /////////////RETURN////////////////////
