@@ -1,6 +1,8 @@
+//Database
 var publicData = [1,99];
 var publicColors = ["#E4322B", "#009ED5"];
 var publicName = "BIỂU ĐỒ TỔNG QUAN KHUNG NĂNG LỰC";
+////////////////////////////////////////////////////
 
 var pieChart = function () {
 
