@@ -1,6 +1,6 @@
 //Database
-var publicData = [1,99];
-var publicColors = ["#E4322B", "#009ED5"];
+var publicData = [20, 80];
+var publicColors = ["#E4322B", "#009ED5", "#456AA4", "#807D80"];
 var publicName = "BIỂU ĐỒ TỔNG QUAN KHUNG NĂNG LỰC";
 ////////////////////////////////////////////////////
 
@@ -12,6 +12,8 @@ var pieChart = function () {
     var privateCenter = [myCanvas.width / 5.9, myCanvas.height / 2];
     var privateRadius = Math.min(myCanvas.width, myCanvas.height) / 7;
     var privateLastPosition = 0, privateTotal = 0;
+    var privateFontNameChart = "20px Arial";
+    var privateFontReport = "8px Arial";
 
     for (var i in publicData) {
         privateTotal += publicData[i];
@@ -92,7 +94,7 @@ var pieChart = function () {
             myCtx.scale(3, 1);
         }
         for (i = 0; i < 60; i++) {
-            myCtx.fillStyle = "#456AA4";
+            myCtx.fillStyle = publicColors[2];
             myCtx.beginPath();
             myCtx.arc(privateCenter[0], privateCenter[1] + i, privateRadius, privateLastPosition, privateLastPosition
                 + (Math.PI * 2 * (publicData[1] / privateTotal)));
@@ -131,37 +133,54 @@ var pieChart = function () {
 
     //-------->privateReport1<--------//
     var privateReport1 = function () {
-        myCtx.scale(1,2);
+        myCtx.scale(1, 2);
         myCtx.beginPath();
-        myCtx.moveTo(x+4, y-101);
+        myCtx.moveTo(x + 4, y - 101);
         myCtx.lineTo(150, 50);
         myCtx.lineTo(190, 50);
-        myCtx.fillStyle = "#807D80";
-        myCtx.font = "8px Arial";
+        myCtx.fillStyle = publicColors[3];
+        myCtx.font = privateFontReport;
         myCtx.fillText((100 - (publicData[1] / privateTotal) * 100) + "% CHƯA ĐẠT", 150, 45);
-        myCtx.strokeStyle = "#E4322B";
+        myCtx.strokeStyle = publicColors[0];
         myCtx.stroke();
     };
 
     //-------->privateReport2<--------//
     var privateReport2 = function () {
+        var index = 96;
+
+        if (publicData[1] / privateTotal >= 0.01 && publicData[1] / privateTotal <= 0.02) {
+            index = 100;
+        }
+
+        if (publicData[1] / privateTotal >= 0.03 && publicData[1] / privateTotal <= 0.05) {
+            index = 99.5;
+        }
+
+        if (publicData[1] / privateTotal >= 0.06 && publicData[1] / privateTotal <= 0.11) {
+            index = 98;
+        }
+
+        if (publicData[1] / privateTotal >= 0.12 && publicData[1] / privateTotal <= 0.5) {
+            index = 95;
+        }
         myCtx.beginPath();
-        myCtx.moveTo(x1, y1-100);
+        myCtx.moveTo(x1, y1 - index);
         myCtx.lineTo(60, 50);
         myCtx.lineTo(20, 50);
-        myCtx.fillStyle = "#807D80";
-        myCtx.font = "8px Arial";
+        myCtx.fillStyle = publicColors[3];
+        myCtx.font = privateFontReport;
         myCtx.fillText(((publicData[1] / privateTotal) * 100) + "% ĐÃ ĐẠT", 20, 45);
-        myCtx.strokeStyle = "#456AA4";
+        myCtx.strokeStyle = publicColors[2];
         myCtx.stroke();
     };
 
     //-------->privateNameChart<--------//
     var privateNameChart = function () {
         myCtx.beginPath();
-        myCtx.fillStyle = "#009ED5";
-        myCtx.font = "20px Arial";
-        myCtx.fillText(publicName, privateCenter[0] *1.4, privateCenter[1] * 1.8);
+        myCtx.fillStyle = publicColors[1];
+        myCtx.font = privateFontNameChart;
+        myCtx.fillText(publicName, privateCenter[0] * 1.4, privateCenter[1] * 1.8);
         myCtx.stroke();
     };
 
@@ -213,9 +232,6 @@ var pieChart = function () {
 }();
 
 $(function () {
-    // var publicData = [20, 80];
-    // var publicColors = ["#E4322B", "#009ED5"];
-    // var publicName = "BIỂU ĐỒ TỔNG QUAN KHUNG NĂNG LỰC";
     pieChart.run();
 });
 

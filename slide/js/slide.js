@@ -95,6 +95,7 @@ var runSlide = function () {
 
     var privateClickThumb = function () {
         $(".click-img").animate({"opacity": 0.5});
+        $(".slide").css({"opacity": 0.1});
         $("#icon-" + option).animate({"opacity": 1});
         $("#" + option).animate({"opacity": 1});
         privateSlideContainer.css({"margin-left": -(option * privateWidth - privateWidth)});
@@ -120,6 +121,7 @@ var runSlide = function () {
         privatePreSlide();
         privateStartSlider();
     };
+
 
     var publicClickThumb = function () {
         privatePauseSlide();
