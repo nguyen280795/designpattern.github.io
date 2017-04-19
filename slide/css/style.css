@@ -161,7 +161,7 @@ html[xmlns] .clearfix {
     overflow: hidden
 }
 
-#slider .slides {
+#slider ul {
     display: block;
     width: 6000px;
     height: 400px;
@@ -169,12 +169,15 @@ html[xmlns] .clearfix {
     padding: 0
 }
 
-#slider .slide {
+#slider ul li {
     opacity: 0.1;
+}
+
+#slider ul li img {
     float: left;
     list-style-type: none;
     width: 720px;
-    height: 400px
+    height: 400px;
 }
 
 .prev-slider,
