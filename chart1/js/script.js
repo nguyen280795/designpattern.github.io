@@ -6,7 +6,7 @@ var publicName = "BIỂU ĐỒ TỔNG QUAN KHUNG NĂNG LỰC";
 
 var pieChart = function () {
 
-    //Creat
+    //Create
     var myCanvas = document.getElementById("myCanvas");
     var myCtx = myCanvas.getContext("2d");
     var privateCenter = [myCanvas.width / 5.9, myCanvas.height / 2];
