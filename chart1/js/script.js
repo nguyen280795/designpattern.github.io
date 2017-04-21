@@ -164,6 +164,9 @@ var pieChart = function () {
         if (publicData[1] / privateTotal >= 0.12 && publicData[1] / privateTotal <= 0.5) {
             index = 95;
         }
+        if (publicData[1] / privateTotal === 1) {
+            index = 0;
+        }
         myCtx.beginPath();
         myCtx.moveTo(x1, y1 - index);
         myCtx.lineTo(60, 50);
@@ -184,42 +187,58 @@ var pieChart = function () {
         myCtx.stroke();
     };
 
+    //-------->privateBoolData<--------//
+    var privateBoolData = function (data, color, text) {
+        var index = false;
+        for (var i in publicData) {
+            if (publicData[i] < 0) {
+                index = true;
+            }
+        }
+        return index;
+    };
+
     ///////////////PUBLIC////////////////////
     //-------->publicPieChart<--------//
     var publicPieChart = function () {
 
-        privateNameChart();
-        if (publicData[1] / privateTotal === 0) {
-            privateArr3DNotReached();
+        if (privateBoolData()) {
+            alert("Dữ liệu nhập sai!");
         } else {
-
-            if (publicData[1] / privateTotal < 0.24) {
-                privateArr3DTwo();
-                privateArr3DOne();
-                privateArrOne();
-                privateArrTwo();
-                privateArr3DTwo1();
+            privateNameChart();
+            if (publicData[1] / privateTotal === 0) {
+                privateArr3DNotReached();
             } else {
 
-                if (publicData[1] / privateTotal === 1) {
-                    privateArr3DOne();
-                    privateArrOne();
-                }
-                else {
+                if (publicData[1] / privateTotal < 0.24) {
                     privateArr3DTwo();
                     privateArr3DOne();
                     privateArrOne();
                     privateArrTwo();
+                    privateArr3DTwo1();
+                } else {
+
+                    if (publicData[1] / privateTotal === 1) {
+                        privateArr3DOne();
+                        privateArrOne();
+                    }
+                    else {
+                        privateArr3DTwo();
+                        privateArr3DOne();
+                        privateArrOne();
+                        privateArrTwo();
+                    }
                 }
             }
-        }
 
-        if (publicData[1] / privateTotal !== 1) {
-            privateReport1();
-        }
+            if (publicData[1] / privateTotal !== 1) {
 
-        if (publicData[1] / privateTotal !== 0) {
-            privateReport2();
+                privateReport1();
+            }
+
+            if (publicData[1] / privateTotal !== 0) {
+                privateReport2();
+            }
         }
 
     };

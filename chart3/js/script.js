@@ -84,17 +84,21 @@ var containerPieChart = function (options) {
                 var x = center[0] + (radius * doughnutHoleSize * 0.7) * Math.cos(startAngle + sliceAngle / 2 + lastPosition);
                 var y = center[1] + (radius * doughnutHoleSize * 0.7) * Math.sin(startAngle + sliceAngle / 2 + lastPosition);
                 myCtx.fillStyle = privateColorText;
-                myCtx.fillText(data[i] / total * 100 + "%", x-5, y+5);
+                myCtx.fillText(data[i] / total * 100 + "%", x - 5, y + 5);
                 startAngle += sliceAngle
             }
         };
 
         //private func bool data
-        var privateBoolData = function (data) {
+        var privateBoolData = function (data, color, text) {
             var index = false;
-            for (var i in data) {
-                if (data[i] <= 0) {
-                    index = true;
+            if (data.length !== color.length || data.length !== text.length || color.length !== text.length) {
+                index = true;
+            } else {
+                for (var i in data) {
+                    if (data[i] <= 0) {
+                        index = true;
+                    }
                 }
             }
             return index;
@@ -104,8 +108,8 @@ var containerPieChart = function (options) {
 
         //pub func run pie chart
         var publicRunPieChart = function () {
-            if (privateBoolData(privateData)) {
-                alert("Dữ liệu nhập sai!");
+            if (privateBoolData(privateData, privateColors, privateText)) {
+                alert("Dữ liệu nhập sai hoặc thiếu!");
             }
             else {
                 privateDrawText(privateColors, privateText, privateCenter);
